@@ -31,7 +31,13 @@ app.use(express.urlencoded({
 
 app.use(methodOverride('_method'));
 
+app.use(express.static('public'));
+
 //Routes
+
+app.get('/', (req, res) =>{
+    res.redirect('/products')
+});
 
 const productsController = require('./controllers/products');
 app.use('/products', productsController);

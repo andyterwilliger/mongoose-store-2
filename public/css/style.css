@@ -1,0 +1,22 @@
+h1{
+    text-align: center;
+
+}
+.ul-container{
+    display: flex;
+    flex-direction: column;
+}
+
+#li-container{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+img{
+    width:25%;
+}
+
+li{
+    list-style: none;
+}

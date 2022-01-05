@@ -7,7 +7,7 @@ const Product = require('../models/product.js')
 
 const productSeed = require('../models/productSeed.js');
 
-productRouter.get('/products/seed', (req, res) => {
+productRouter.get('/seed', (req, res) => {
     Product.deleteMany({}, (error, allProducts) => {})
 
     Product.create(productSeed, (error, data) => {
@@ -40,14 +40,29 @@ productRouter.delete('/:id', (req, res) => {
 //update
 productRouter.put('/:id', (req, res) => {
     Product.findByIdAndUpdate(
-    req.params.id,
+        req.params.id,
         req.body, {
             new: true,
         },
         (err, updatedProduct) => {
             res.redirect(`/products/${req.params.id}`)
         }
-)});
+    )
+});
+
+productRouter.put('/:id/buy', (req, res) => {
+    Product.updateOne({
+            _id: req.params.id
+        }, {
+            $inc: {
+                'qty': -1
+            }
+        },
+        (error, product) => {
+            res.redirect(`/products/${req.params.id}`)
+        })
+
+})
 
 //Create
 productRouter.post('/', (req, res) => {
