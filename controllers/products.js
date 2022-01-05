@@ -8,11 +8,11 @@ const Product = require('../models/product.js')
 const productSeed = require('../models/productSeed.js');
 
 productRouter.get('/products/seed', (req, res) => {
-	Product.deleteMany({}, (error, allProducts) => {})
+    Product.deleteMany({}, (error, allProducts) => {})
 
-	Product.create(productSeed, (error, data) => {
-		res.redirect('/products');
-	});
+    Product.create(productSeed, (error, data) => {
+        res.redirect('/products');
+    });
 });
 
 //index
@@ -31,22 +31,34 @@ productRouter.get('/new', (req, res) => {
 
 //delete
 
-productRouter.delete('/:id', (req, res) =>{
-    Product.findByIdAndRemove(req.params.id, (err, data) =>{
+productRouter.delete('/:id', (req, res) => {
+    Product.findByIdAndRemove(req.params.id, (err, data) => {
         res.redirect('/products')
     });
 });
+
+//update
+productRouter.put('/:id', (req, res) => {
+    Product.findByIdAndUpdate(
+    req.params.id,
+        req.body, {
+            new: true,
+        },
+        (err, updatedProduct) => {
+            res.redirect(`/products/${req.params.id}`)
+        }
+)});
 
 //Create
 productRouter.post('/', (req, res) => {
     Product.create(req.body, (error, createdProduct) => {
         res.redirect('/products')
-    })
-})
+    });
+});
 
 //edit
 productRouter.get('/:id/edit', (req, res) => {
-    Product.findById(req.params.id, (error, foundProduct) =>{
+    Product.findById(req.params.id, (error, foundProduct) => {
         res.render('edit.ejs', {
             product: foundProduct,
         });
@@ -55,8 +67,8 @@ productRouter.get('/:id/edit', (req, res) => {
 
 //show
 productRouter.get('/:id', (req, res) => {
-    Product.findById(req.params.id, (err, foundProduct) =>{
-        res.render('show.ejs' , {
+    Product.findById(req.params.id, (err, foundProduct) => {
+        res.render('show.ejs', {
             product: foundProduct,
         })
     })
