@@ -16,9 +16,6 @@
             <%products.forEach(product => { %>
                 <li class= "li-container"><%=product.name; %> </a><br>
                     <a href="/products/<%=product._id%>"> <img src=" <%=product.img; %>" alt=""></a> <br>
-                    <%=product.description; %> <br>
-                    <%=product.price; %> <br>
-                    <%=product.qty; %> <br>
                     <% }) %>
                 
                 </li>
