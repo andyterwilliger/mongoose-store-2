@@ -12,8 +12,8 @@
         <h1>Sporting Goods</h1>
         <ul>
             <%products.forEach(product => { %>
-                <li><a href="/products/<%=product._id%>"><%=product.name; %> </a><br>
-                    <%=product.img; %> <br>
+                <li><%=product.name; %> </a><br>
+                    <a href="/products/<%=product._id%>"> <img src=" <%=product.img; %>" alt=""></a> <br>
                     <%=product.description; %> <br>
                     <%=product.price; %> <br>
                     <%=product.qty; %> <br>

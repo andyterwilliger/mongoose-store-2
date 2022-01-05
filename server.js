@@ -32,6 +32,18 @@ app.use(express.urlencoded({
 app.use(methodOverride('_method'));
 //routes
 
+//seed
+
+const productSeed = require('./models/productSeed.js');
+
+app.get('/products/seed', (req, res) => {
+	Product.deleteMany({}, (error, allProducts) => {})
+
+	Product.create(productSeed, (error, data) => {
+		res.redirect('/products');
+	});
+});
+
 //index
 app.get('/products', (req, res) => {
     Product.find({}, (error, allProducts) => {
@@ -60,6 +72,15 @@ app.post('/products', (req, res) => {
         res.redirect('/products')
     })
 })
+
+//edit
+app.get('/products/:id/edit', (req, res) => {
+    Product.findById(req.params.id, (error, foundProduct) =>{
+        res.render('edit.ejs', {
+            product: foundProduct,
+        });
+    });
+});
 
 //show
 app.get('/products/:id', (req, res) => {

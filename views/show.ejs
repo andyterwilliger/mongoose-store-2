@@ -11,13 +11,16 @@
 		<nav>
 			<a href="/products">Back to Products Page</a>
 		</nav>
-		<h1><%=product.name %></h1>
+		<h1><%= product.name %></h1>
 		 <p>   
-            <%= product.img%>  <br>
+            <img src="<%= product.img%>" alt=""></img>  <br>
             <%= product.description%> <br>
             <%= product.price%> <br>
             <%= product.qty%> <br>
          </p>
+         <form action="">
+             <input type="submit" value="Buy">
+         </form>
         <form action="/products/<%= product.id %>?_method=DELETE" method="POST">
             <input type="submit" value="DELETE">
         </form>
