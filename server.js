@@ -2,7 +2,9 @@ const express = require('express');
 
 const mongoose = require('mongoose');
 
-const Product = require('./models/product.js')
+const Product = require('./models/product.js');
+
+const methodOverride= require("method-override");
 
 const app = express();
 
@@ -27,7 +29,7 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-
+app.use(methodOverride('_method'));
 //routes
 
 //index
@@ -43,6 +45,14 @@ app.get('/products', (req, res) => {
 app.get('/products/new', (req, res) => {
     res.render('new.ejs')
 })
+
+//delete
+
+app.delete('/products/:id', (req, res) =>{
+    Product.findByIdAndRemove(req.params.id, (err, data) =>{
+        res.redirect('/products')
+    });
+});
 
 //Create
 app.post('/products', (req, res) => {
