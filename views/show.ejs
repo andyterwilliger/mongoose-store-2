@@ -18,7 +18,7 @@
             <%= product.price%> <br>
             <%= product.qty%> <br>
          </p>
-         <form action="">
+         <form action="/products/<%= product.id%>">
              <input type="submit" value="Buy">
          </form>
         <form action="/products/<%= product.id %>?_method=DELETE" method="POST">

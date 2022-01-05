@@ -2,7 +2,7 @@ const express = require('express');
 
 const mongoose = require('mongoose');
 
-const Product = require('./models/product.js');
+//const Product = require('./models/product.js');
 
 const methodOverride= require("method-override");
 
@@ -30,71 +30,13 @@ app.use(express.urlencoded({
 }));
 
 app.use(methodOverride('_method'));
-//routes
 
-//seed
+//Routes
 
-const productSeed = require('./models/productSeed.js');
+const productsController = require('./controllers/products');
+app.use('/products', productsController);
 
-app.get('/products/seed', (req, res) => {
-	Product.deleteMany({}, (error, allProducts) => {})
-
-	Product.create(productSeed, (error, data) => {
-		res.redirect('/products');
-	});
-});
-
-//index
-app.get('/products', (req, res) => {
-    Product.find({}, (error, allProducts) => {
-        res.render('index.ejs', {
-            products: allProducts,
-        })
-    })
-})
-
-//New
-app.get('/products/new', (req, res) => {
-    res.render('new.ejs')
-})
-
-//delete
-
-app.delete('/products/:id', (req, res) =>{
-    Product.findByIdAndRemove(req.params.id, (err, data) =>{
-        res.redirect('/products')
-    });
-});
-
-//Create
-app.post('/products', (req, res) => {
-    Product.create(req.body, (error, createdProduct) => {
-        res.redirect('/products')
-    })
-})
-
-//edit
-app.get('/products/:id/edit', (req, res) => {
-    Product.findById(req.params.id, (error, foundProduct) =>{
-        res.render('edit.ejs', {
-            product: foundProduct,
-        });
-    });
-});
-
-//show
-app.get('/products/:id', (req, res) => {
-    Product.findById(req.params.id, (err, foundProduct) =>{
-        res.render('show.ejs' , {
-            product: foundProduct,
-        })
-    })
-})
-
-
-
-
-
+//Listener
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => console.log(`server is listening at ${PORT}`))
