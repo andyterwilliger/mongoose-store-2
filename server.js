@@ -1,16 +1,18 @@
 const express = require('express');
 
-const mongoose= require('mongoose');
+const mongoose = require('mongoose');
 
-const app= express();
+const Product = require('./models/product.js')
+
+const app = express();
 
 require('dotenv').config();
 
 
 //Database connection
 mongoose.connect(process.env.DATABASE_URL, {
-	useNewUrlParser: true,
-	useUnifiedTopology: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 });
 
 //Database error/success
@@ -21,15 +23,42 @@ db.on('connected', () => console.log('mongo connected'));
 db.on('disconnected', () => console.log('mongo disconnected'));
 
 //middleware
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({
+    extended: true
+}));
 
 
 //routes
 
-app.post('/products', (req, res) => {
-    res.send(req.body)
+//index
+app.get('/products', (req, res) => {
+    Product.find({}, (error, allProducts) => {
+        res.render('index.ejs', {
+            products: allProducts,
+        })
+    })
 })
 
+//New
+app.get('/products/new', (req, res) => {
+    res.render('new.ejs')
+})
+
+//Create
+app.post('/products', (req, res) => {
+    Product.create(req.body, (error, createdProduct) => {
+        res.redirect('/products')
+    })
+})
+
+//show
+app.get('/products/:id', (req, res) => {
+    Product.findById(req.params.id, (err, foundProduct) =>{
+        res.render('show.ejs' , {
+            product: foundProduct,
+        })
+    })
+})
 
 
 
