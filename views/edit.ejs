@@ -5,17 +5,22 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/edit.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Shizuru&display=swap" rel="stylesheet">
     <title>Product List</title>
   </head>
 
   <body>
+    <a style="text-decoration: none; color:black;" href="/">Back to Home</a>
     <h1>Edit Product</h1>
     <form action="/products/<%=product._id%>?_method=PUT" method="POST">
-        Name: <input type="text" name="name" value= "<%=product.name%>"/><br />
-        Image: <input type="text" name="img" value= "<%=product.img%>"/><br />
-        Description: <input type="text" name="description" value= "<%=product.description%>"/><br />
-        Price: <input type="number" name="price" value= "<%=product.price%>"><br>
-        Quantity: <input type="number" name="qty" value= "<%=product.qty%>">
+        Name: <input class="field" type="text" name="name" value= "<%=product.name%>"/><br />
+        Image: <input class= "field" type="text" name="img" value= "<%=product.img%>"/><br />
+        Description: <input class= "field" type="text" name="description" value= "<%=product.description%>"/><br />
+        Price: <input class = "field" type="number" name="price" value= "<%=product.price%>"><br>
+        Quantity: <input class ="field" type="number" name="qty" value= "<%=product.qty%>"> <br>
       
       <input type="submit" value="Submit Changes" > <br>
     </form>

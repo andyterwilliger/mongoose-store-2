@@ -1,0 +1,13 @@
+body{
+    height: 100%;
+    background: url('https://images.unsplash.com/photo-1572045930799-b74aace83577?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80');
+    font-family: 'Shizuru', cursive;
+    text-align: center;
+    font-size: 40px;
+    
+}
+
+.field{
+    
+    margin: 10px 10px
+}

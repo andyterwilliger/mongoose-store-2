@@ -5,16 +5,21 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/css/new.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Shizuru&display=swap" rel="stylesheet">
 		<title>Product List</title>
 	</head>
 	<body>
+		<a style= " font-size: 30px; text-decoration: none; color: black;" href="/">Back to Home</a>
 		<h1>New Product Page</h1>
 		<form action="/products" method="POST">
 			Name: <input type="text" name="name" /><br />
 			Image: <input type="text" name="img" /><br />
 			Description: <input type="text" name="description" /><br />
 			Price: <input type="number" name="price" id="price"> <br>
-            Quantity: <input type="number" name="qty" id="quantity">
+            Quantity: <input type="number" name="qty" id="quantity"><br>
             <input type="submit" name="" value="Add Product" />
 		</form>
 	</body>

@@ -1,46 +1,58 @@
-
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="/css/show.css">
-		<title>Show Page</title>
-	</head>
-	<body>
-		<nav>
-			<a href="/products">Back to Products Page</a>
-		</nav>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="/css/show.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Shizuru&display=swap" rel="stylesheet">	
+	<title>Show Page</title>
+</head>
+
+<body>
+	<nav>
+		<a style=" background-color: black; font-size: 30px; text-decoration: none; color:white;"href="/products">Back to Products Page</a>
+	</nav>
+
+	<h1><%= product.name %></h1>
+	<div id="img-container">
+		<p>
+			<img src="<%= product.img%>" alt=""></img> <br>
+		</p>
+	</div>
+	<div id="product-container">
+		<p>
+			Description: <%= product.description%> <br>
+			Price: $<%= product.price%> <br>
+			Number in Stock: <%= product.qty%> <br>
 		
-		<h1><%= product.name %></h1>
-		 <p>   
-            <img src="<%= product.img%>" alt=""></img>  <br>
-            <%= product.description%> <br>
-            <%= product.price%> <br>
-            <%= product.qty%> <br>
-         </p>
-       
-		 <% if (product.qty >0) {%>
-		
-			<p>Quantity: <%= product.qty%></p>
-		
-			<form action="/products/<%=product._id%>/buy?_method=PUT" method="POST">
-        
-			<input type="submit" value="Buy">
-        
-			</form>
-		
-		 <% } else { %>
-			
-			<p> OUT OF STOCK </p>
-			
-			<%}%>
-		 
-			<a href="/products/<%=product._id%>/edit">Edit Product</a>
-		
-		<form action="/products/<%= product.id %>?_method=DELETE" method="POST">
-            <input type="submit" value="DELETE">
-        </form>
-	</body>
+
+			<% if (product.qty >0) {%> 
+
+			Quantity: <%= product.qty%>
+		</p>
+	</div>
+	<div id="form-container">
+		<form action="/products/<%=product._id%>/buy?_method=PUT" method="POST">
+
+			<input type="submit" value="BUY">
+
+		</form>
+
+		<% } else { %>
+
+		<p> OUT OF STOCK </p>
+
+		<%}%>
+			<button><a style= "color: black; text-decoration: none;" href="/products/<%=product._id%>/edit">Edit Product</a></button> 
+
+		<form action="/products/<%= product.id %>?_method=DELETE" method="POST"> 
+			<input type="submit" value="DELETE">
+		</form>
+	</div>
+</body>
+
 </html>
