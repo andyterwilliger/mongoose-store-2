@@ -11,6 +11,8 @@ h1{
     text-align: center;
     font-size: 50px;
 
+    color:white;
+
 }
 ul{
     display: grid;
@@ -22,11 +24,12 @@ ul{
 
 
 img{
-    width:100%;
+    width:75%;
 }
 
 li{
     list-style: none;
     font-size: 40px;
-    
+    color:white;
+
 }
